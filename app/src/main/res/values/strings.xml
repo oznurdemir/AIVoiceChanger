@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AIVoiceChanger</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome_to_">Welcome to \nVoice Ai: Rap \ngenerator</string>
+    <string name="the_ultimat">The ultimate \nRap Song generator experience.</string>
+    <string name="label">Continue</string>
+    <string name="write_a_pro">• Write a prompt &amp; get lyrics \n• Choose a beat \n• Choose your favorite rapper\n• Share your creation</string>
 </resources>
