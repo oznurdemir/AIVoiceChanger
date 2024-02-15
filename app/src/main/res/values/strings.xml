@@ -5,4 +5,8 @@
     <string name="the_ultimat">The ultimate \nRap Song generator experience.</string>
     <string name="label">Continue</string>
     <string name="write_a_pro">• Write a prompt &amp; get lyrics \n• Choose a beat \n• Choose your favorite rapper\n• Share your creation</string>
+    <string name="ai_voices">AI Voices</string>
+    <string name="start_here">Start here</string>
+    <string name="generate_a_">Generate a rap song in a few \neasy steps!</string>
+    <string name="generate">Generate</string>
 </resources>
