@@ -19,4 +19,21 @@
     <string name="max_250">Max 250 Character</string>
     <string name="max_250_1">250</string>
     <string name="select_voice">Select AI Voice</string>
+    <string name="trump">Donald Trump</string>
+    <string name="obama">Barack Obama</string>
+    <string name="taylor">Taylor \nSwift</string>
+    <string name="elon">Elon \nMusk</string>
+    <string name="brad">Brad Pitt</string>
+    <string name="cent_50">50 Cent</string>
+    <string name="dua_lipa">Dua Lipa</string>
+    <string name="johnny">Johnny Depp</string>
+    <string name="write_promts">Write your promts</string>
+    <string name="trump_token">TM:4v0ft4j72y2g</string>
+    <string name="obama_token">TM:58vtv7x9f32c</string>
+    <string name="taylor_token">TM:gfewc9jkbg48</string>
+    <string name="elon_token">TM:fxq6hnfc3rht</string>
+    <string name="brad_token">TM:pqett48qpw0k</string>
+    <string name="cent_50_token">TM:3cj7r4b4q9ks</string>
+    <string name="dua_lipa_token">TM:gbp61y7mm0z8</string>
+    <string name="johnny_token">TM:ca08cc0dgrdd</string>
 </resources>

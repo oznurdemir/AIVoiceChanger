@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_AIVoicesFragment"
+            app:destination="@id/AIVoicesFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -31,5 +34,26 @@
         <action
             android:id="@+id/action_settingsFragment_to_homePageFragment"
             app:destination="@id/homePageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/AIVoicesFragment"
+        android:name="com.example.aivoicechanger.ui.ai_voices.AIVoicesFragment"
+        android:label="fragment_a_i_voices"
+        tools:layout="@layout/fragment_a_i_voices" >
+        <action
+            android:id="@+id/action_AIVoicesFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
+        <action
+            android:id="@+id/action_AIVoicesFragment_to_songGenerationFragment2"
+            app:destination="@id/songGenerationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/songGenerationFragment"
+        android:name="com.example.aivoicechanger.ui.song_generation.SongGenerationFragment"
+        android:label="fragment_song_generation"
+        tools:layout="@layout/fragment_song_generation" >
+        <argument
+            android:name="celebrity"
+            app:argType="com.example.aivoicechanger.data.entity.generate_voice_ai.CelebrityItem" />
     </fragment>
 </navigation>

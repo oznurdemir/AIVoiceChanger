@@ -16,6 +16,9 @@ class HomePageFragment : Fragment() {
         binding.imageViewSettings.setOnClickListener {
             findNavController().navigate(R.id.action_homePageFragment_to_settingsFragment)
         }
+        binding.buttonGenerate.setOnClickListener {
+            findNavController().navigate(R.id.action_homePageFragment_to_AIVoicesFragment)
+        }
         return binding.root
     }
 }
