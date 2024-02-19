@@ -36,4 +36,6 @@
     <string name="cent_50_token">TM:3cj7r4b4q9ks</string>
     <string name="dua_lipa_token">TM:gbp61y7mm0z8</string>
     <string name="johnny_token">TM:ca08cc0dgrdd</string>
+    <string name="aı_genereting">Generating \nAI Voice</string>
+    <string name="generating_text">Please wait while we\'re generating your song \nkeep the app open</string>
 </resources>
