@@ -1,16 +1,56 @@
 package com.example.aivoicechanger.ui.song_generation
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
+import com.example.aivoicechanger.data.entity.generate_voice_ai.VoiceRequest
 import com.example.aivoicechanger.databinding.FragmentSongGenerationBinding
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import java.util.UUID
 
+@AndroidEntryPoint
 class SongGenerationFragment : Fragment() {
     private lateinit var binding : FragmentSongGenerationBinding
+    private lateinit var viewModel: SongGenerationViewModel
+    var uuid = UUID.randomUUID()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentSongGenerationBinding.inflate(inflater, container, false)
+        val args :SongGenerationFragmentArgs by navArgs()
+        //val name = args.celebrity.name
+        //val image = args.celebrity.image
+        val token = args.celebrity.token
+        val text = args.celebrity.text
+
+        val voice =VoiceRequest(uuid.toString(),requireContext().getString(token), text)
+        lifecycleScope.launch {
+            viewModel.postVoice(voice)
+        }
+        collectEvents()
         return binding.root
+    }
+
+    private fun collectEvents() {
+        lifecycleScope.launch {
+            viewModel.voice.collect { voice ->
+                voice?.inferenceJobToken?.let {
+                    if (it.isNotEmpty()) {
+                        Log.e("TOKEN", it)
+                    }
+                }
+            }
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempViewModel : SongGenerationViewModel by viewModels()
+        viewModel = tempViewModel
     }
 }
