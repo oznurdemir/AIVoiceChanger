@@ -20,14 +20,14 @@ class DataSource (){
 
     suspend fun celebrityList() : Flow<List<CelebrityItem>> = flow {
         val celebrityItemList: ArrayList<CelebrityItem> = arrayListOf(
-            CelebrityItem(R.drawable.trump, R.string.trump, R.string.trump_token),
-            CelebrityItem(R.drawable.obama, R.string.obama, R.string.obama_token),
-            CelebrityItem(R.drawable.tylor, R.string.taylor, R.string.taylor_token),
-            CelebrityItem(R.drawable.elon, R.string.elon, R.string.elon_token),
-            CelebrityItem(R.drawable.brad_pitt, R.string.brad, R.string.brad_token),
-            CelebrityItem(R.drawable.rapper, R.string.cent_50, R.string.cent_50_token),
-            CelebrityItem(R.drawable.dua_lipa, R.string.dua_lipa, R.string.dua_lipa_token),
-            CelebrityItem(R.drawable.johny, R.string.johnny, R.string.johnny_token)
+            CelebrityItem(R.drawable.trump, R.string.trump, R.string.trump_token,""),
+            CelebrityItem(R.drawable.obama, R.string.obama, R.string.obama_token,""),
+            CelebrityItem(R.drawable.tylor, R.string.taylor, R.string.taylor_token,""),
+            CelebrityItem(R.drawable.elon, R.string.elon, R.string.elon_token,""),
+            CelebrityItem(R.drawable.brad_pitt, R.string.brad, R.string.brad_token,""),
+            CelebrityItem(R.drawable.rapper, R.string.cent_50, R.string.cent_50_token,""),
+            CelebrityItem(R.drawable.dua_lipa, R.string.dua_lipa, R.string.dua_lipa_token,""),
+            CelebrityItem(R.drawable.johny, R.string.johnny, R.string.johnny_token,"")
         )
         emit(celebrityItemList)
     }.flowOn(Dispatchers.IO)

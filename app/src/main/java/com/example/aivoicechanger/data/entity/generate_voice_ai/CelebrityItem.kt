@@ -5,5 +5,6 @@ import java.io.Serializable
 data class CelebrityItem (
     val image : Int,
     val name : Int,
-    val token : Int
+    val token : Int,
+    val text : String
 ): Serializable
