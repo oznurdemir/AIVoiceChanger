@@ -1,4 +1,4 @@
-package com.example.aivoicechanger.data.entity.generate_voice_ai
+package com.example.aivoicechanger.data.entity.generate_voice_ai.music_token
 
 
 import com.google.gson.annotations.SerializedName

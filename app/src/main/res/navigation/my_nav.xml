@@ -54,6 +54,18 @@
         tools:layout="@layout/fragment_song_generation" >
         <argument
             android:name="celebrity"
-            app:argType="com.example.aivoicechanger.data.entity.generate_voice_ai.CelebrityItem" />
+            app:argType="com.example.aivoicechanger.data.entity.generate_voice_ai.celebrity_info.CelebrityItem" />
+        <action
+            android:id="@+id/action_songGenerationFragment_to_songPlayingFragment"
+            app:destination="@id/songPlayingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/songPlayingFragment"
+        android:name="com.example.aivoicechanger.ui.song_playing.SongPlayingFragment"
+        android:label="fragment_song_playing"
+        tools:layout="@layout/fragment_song_playing" >
+        <argument
+            android:name="info"
+            app:argType="com.example.aivoicechanger.data.entity.song_playing.SongPlayingData" />
     </fragment>
 </navigation>

@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.aivoicechanger.data.entity.generate_voice_ai.VoiceRequest
+import com.example.aivoicechanger.data.entity.generate_voice_ai.music_token.VoiceRequest
+import com.example.aivoicechanger.data.entity.song_playing.SongPlayingData
 import com.example.aivoicechanger.databinding.FragmentSongGenerationBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -19,16 +21,18 @@ import java.util.UUID
 class SongGenerationFragment : Fragment() {
     private lateinit var binding : FragmentSongGenerationBinding
     private lateinit var viewModel: SongGenerationViewModel
+    private var image : Int = 0
+    private var name : Int = 0
     var uuid = UUID.randomUUID()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentSongGenerationBinding.inflate(inflater, container, false)
         val args :SongGenerationFragmentArgs by navArgs()
-        //val name = args.celebrity.name
-        //val image = args.celebrity.image
+        name = args.celebrity.name
+        image = args.celebrity.image
         val token = args.celebrity.token
         val text = args.celebrity.text
 
-        val voice =VoiceRequest(uuid.toString(),requireContext().getString(token), text)
+        val voice = VoiceRequest(uuid.toString(),requireContext().getString(token), text)
         lifecycleScope.launch {
             viewModel.postVoice(voice)
         }
@@ -42,6 +46,23 @@ class SongGenerationFragment : Fragment() {
                 voice?.inferenceJobToken?.let {
                     if (it.isNotEmpty()) {
                         Log.e("TOKEN", it)
+                        viewModel.getMusicUrl(it)
+                        getMusicUrl()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun getMusicUrl() {
+        lifecycleScope.launch {
+            viewModel.music.collect{musicUrl->
+                musicUrl?.let {
+                    Log.e("Music Url",musicUrl)
+                    if(musicUrl.isNotEmpty()){
+                        val musicInfo = SongPlayingData(image = image, name = name, musicPath = musicUrl)
+                        val action = SongGenerationFragmentDirections.actionSongGenerationFragmentToSongPlayingFragment(musicInfo)
+                        findNavController().navigate(action)
                     }
                 }
             }

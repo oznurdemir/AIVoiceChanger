@@ -1,4 +1,4 @@
-package com.example.aivoicechanger.data.entity.generate_voice_ai
+package com.example.aivoicechanger.data.entity.generate_voice_ai.celebrity_info
 
 import java.io.Serializable
 

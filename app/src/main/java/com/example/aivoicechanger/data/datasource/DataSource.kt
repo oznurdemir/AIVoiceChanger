@@ -1,13 +1,15 @@
 package com.example.aivoicechanger.data.datasource
 
 import com.example.aivoicechanger.R
-import com.example.aivoicechanger.data.entity.generate_voice_ai.CelebrityItem
+import com.example.aivoicechanger.data.entity.generate_voice_ai.celebrity_info.CelebrityItem
+import com.example.aivoicechanger.data.entity.generate_voice_ai.music.MusicResponse
+import com.example.aivoicechanger.network.ApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
-class DataSource (){
+class DataSource (val apiService: ApiService){
     suspend fun settingsList() : Flow<List<Int>> = flow {
         val settingsItems = ArrayList<Int>()
         settingsItems.add(R.string.share_app)
@@ -30,5 +32,9 @@ class DataSource (){
             CelebrityItem(R.drawable.johny, R.string.johnny, R.string.johnny_token,"")
         )
         emit(celebrityItemList)
+    }.flowOn(Dispatchers.IO)
+
+    suspend fun getMusicUrl(musicToken : String) : Flow<MusicResponse> = flow {
+        emit(apiService.getMusicUrl(musicToken))
     }.flowOn(Dispatchers.IO)
 }

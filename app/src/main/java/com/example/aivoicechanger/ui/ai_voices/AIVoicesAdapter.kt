@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.aivoicechanger.R
-import com.example.aivoicechanger.data.entity.generate_voice_ai.CelebrityItem
+import com.example.aivoicechanger.data.entity.generate_voice_ai.celebrity_info.CelebrityItem
 import com.example.aivoicechanger.databinding.VoicesPageItemBinding
 interface CelebrityClickedListener{
     fun onCelebrityClicked(celebrityImage : Int, celebrityName : Int, celebrityToken : Int)
 }
 
 class AIVoicesAdapter(private val celebrityItemsList : List<CelebrityItem>,
-    private val celebrityClickedListener: CelebrityClickedListener) : RecyclerView.Adapter<AIVoicesAdapter.ViewHolder>(){
+                      private val celebrityClickedListener: CelebrityClickedListener) : RecyclerView.Adapter<AIVoicesAdapter.ViewHolder>(){
 
     private var selectedPosition = RecyclerView.NO_POSITION
 

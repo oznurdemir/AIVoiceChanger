@@ -12,7 +12,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.aivoicechanger.R
-import com.example.aivoicechanger.data.entity.generate_voice_ai.CelebrityItem
+import com.example.aivoicechanger.data.entity.generate_voice_ai.celebrity_info.CelebrityItem
 import com.example.aivoicechanger.databinding.FragmentAIVoicesBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

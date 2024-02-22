@@ -2,7 +2,7 @@ package com.example.aivoicechanger.ui.ai_voices
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.aivoicechanger.data.entity.generate_voice_ai.CelebrityItem
+import com.example.aivoicechanger.data.entity.generate_voice_ai.celebrity_info.CelebrityItem
 import com.example.aivoicechanger.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow

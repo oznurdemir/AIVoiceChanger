@@ -1,4 +1,4 @@
-package com.example.aivoicechanger.data.entity.generate_voice_ai
+package com.example.aivoicechanger.data.entity.generate_voice_ai.music_token
 
 data class VoiceRequest (
     val uuid_idempotency_token : String,
