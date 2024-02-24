@@ -38,4 +38,8 @@
     <string name="johnny_token">TM:ca08cc0dgrdd</string>
     <string name="aı_genereting">Generating \nAI Voice</string>
     <string name="generating_text">Please wait while we\'re generating your song \nkeep the app open</string>
+    <string name="ai_voice">AI Voice</string>
+    <string name="time1">00:00</string>
+    <string name="time2">1.24</string>
+    <string name="save">Save</string>
 </resources>
