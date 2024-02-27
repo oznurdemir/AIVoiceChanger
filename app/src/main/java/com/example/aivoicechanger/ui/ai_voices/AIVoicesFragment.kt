@@ -38,7 +38,8 @@ class AIVoicesFragment : Fragment() {
                                 celebrityName: Int,
                                 celebrityToken: Int
                             ) {
-                                val celebrity = CelebrityItem(celebrityImage, celebrityName, celebrityToken, binding.textViewContent.toString())
+                                val userInputText = binding.textViewContent.text.toString()
+                                val celebrity = CelebrityItem(celebrityImage, celebrityName, celebrityToken, userInputText)
                                 buttonGenerateVoice.setOnClickListener {
                                     val action = AIVoicesFragmentDirections.actionAIVoicesFragmentToSongGenerationFragment2(celebrity)
                                     findNavController().navigate(action)
