@@ -1,7 +1,13 @@
 package com.example.aivoicechanger.data.entity.generate_voice_ai.music_token
 
-data class VoiceRequest (
-    val uuid_idempotency_token : String,
-    val tts_model_token : String,
-    val inference_text : String
+
+import com.google.gson.annotations.SerializedName
+
+data class VoiceRequest(
+    @SerializedName("inference_text")
+    val inferenceText: String?,
+    @SerializedName("tts_model_token")
+    val ttsModelToken: String?,
+    @SerializedName("uuid_idempotency_token")
+    val uuidIdempotencyToken: String?
 )

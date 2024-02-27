@@ -3,6 +3,7 @@ package com.example.aivoicechanger.ui.song_generation
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.aivoicechanger.data.entity.generate_voice_ai.music.State
 import com.example.aivoicechanger.data.entity.generate_voice_ai.music_token.VoiceRequest
 import com.example.aivoicechanger.data.entity.generate_voice_ai.music_token.VoiceResponse
 import com.example.aivoicechanger.network.ApiClient
@@ -20,15 +21,19 @@ import javax.inject.Inject
 class SongGenerationViewModel @Inject constructor(val repository: Repository): ViewModel() {
     private val _voice = MutableStateFlow<VoiceResponse?>(null)
     val voice: StateFlow<VoiceResponse?> = _voice.asStateFlow()
-    private val _music = MutableStateFlow<String?>(null)
-    val music: StateFlow<String?> = _music.asStateFlow()
+    private val _music = MutableStateFlow<State?>(null)
+    val music: StateFlow<State?> = _music.asStateFlow()
 
 
     fun postVoice(token: VoiceRequest) {
         viewModelScope.launch {
             try {
                 val response = ApiClient.getClient().sendToken(token)
-                _voice.value = response
+                if(response.isSuccessful){
+                    _voice.value = response.body()
+                }else{
+                    Log.e("Hata", "Yanıt Kodu: ${response.code()}, Hata Gövdesi: ${response.errorBody()?.string() ?: "Bilinmeyen hata"}")
+                }
             } catch (e: Exception) {
                 e.localizedMessage?.let { Log.e("error", it) }
             }
@@ -44,7 +49,7 @@ class SongGenerationViewModel @Inject constructor(val repository: Repository): V
                 musicUrl.state?.let {
                     val url = musicUrl.state.maybePublicBucketWavAudioPath
                     if (url != null) {
-                        _music.value = url
+                        _music.value = it
                         return@launch // Döngüyü sonlandır
                     }
                 }

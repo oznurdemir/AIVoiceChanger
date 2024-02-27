@@ -32,7 +32,7 @@ class SongGenerationFragment : Fragment() {
         val token = args.celebrity.token
         val text = args.celebrity.text
 
-        val voice = VoiceRequest(uuid.toString(),requireContext().getString(token), text)
+        val voice = VoiceRequest(text,requireContext().getString(token), uuid.toString())
         lifecycleScope.launch {
             viewModel.postVoice(voice)
         }
@@ -58,9 +58,10 @@ class SongGenerationFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.music.collect{musicUrl->
                 musicUrl?.let {
-                    Log.e("Music Url",musicUrl)
-                    if(musicUrl.isNotEmpty()){
-                        val musicInfo = SongPlayingData(image = image, name = name, musicPath = musicUrl)
+                    val path = musicUrl.maybePublicBucketWavAudioPath.toString()
+                    Log.e("Music Url",path)
+                    if(path.isNotEmpty()){
+                        val musicInfo = SongPlayingData(image = image, name = name, musicPath = path)
                         val action = SongGenerationFragmentDirections.actionSongGenerationFragmentToSongPlayingFragment(musicInfo)
                         findNavController().navigate(action)
                     }
