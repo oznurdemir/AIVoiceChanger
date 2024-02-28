@@ -12,11 +12,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.TextView
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.aivoicechanger.R
+import com.example.aivoicechanger.data.entity.song.Song
 import com.example.aivoicechanger.databinding.FragmentSongPlayingBinding
 import com.example.aivoicechanger.utils.Constants
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SongPlayingFragment : Fragment() {
     private lateinit var binding: FragmentSongPlayingBinding
     private lateinit var mediaPlayer: MediaPlayer
@@ -27,6 +31,7 @@ class SongPlayingFragment : Fragment() {
     private lateinit var imageViewBack: ImageView
     private lateinit var imageViewFoward: ImageView
     private val handler = Handler(Looper.getMainLooper())
+    private lateinit var viewModel: SongPlayingViewModel
     private var isPlaying = false
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentSongPlayingBinding.inflate(inflater, container, false)
@@ -35,6 +40,7 @@ class SongPlayingFragment : Fragment() {
         val name = args.info.name
         val path = args.info.musicPath
         val audioUrl = Constants.SONG_BASE_PATH + path
+        val text = args.info.text
 
         Log.e("AUDIO_URL", audioUrl)
 
@@ -51,6 +57,12 @@ class SongPlayingFragment : Fragment() {
             this@SongPlayingFragment.imageViewPlay = imageViewPlayArrow
             imageViewBack = imageViewReplace
             imageViewFoward = imageViewBefore
+
+            buttonSave.setOnClickListener {
+                val voice = Song(0,image, name, text)
+                viewModel.addVoice(voice)
+                Log.e("ADD", voice.toString())
+            }
         }
 
         initializeSeekBar()
@@ -136,5 +148,11 @@ class SongPlayingFragment : Fragment() {
         val currentPosition = mediaPlayer.currentPosition
         val newPosition = if (currentPosition + 15000 < mediaPlayer.duration) currentPosition + 15000 else mediaPlayer.duration
         mediaPlayer.seekTo(newPosition)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempViewModel: SongPlayingViewModel by viewModels()
+        viewModel = tempViewModel
     }
 }
