@@ -36,32 +36,32 @@ class SongGenerationFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.postVoice(voice)
         }
-        collectEvents()
+        collectEvents(text)
         return binding.root
     }
 
-    private fun collectEvents() {
+    private fun collectEvents(text : String) {
         lifecycleScope.launch {
             viewModel.voice.collect { voice ->
                 voice?.inferenceJobToken?.let {
                     if (it.isNotEmpty()) {
                         Log.e("TOKEN", it)
                         viewModel.getMusicUrl(it)
-                        getMusicUrl()
+                        getMusicUrl(text)
                     }
                 }
             }
         }
     }
 
-    private fun getMusicUrl() {
+    private fun getMusicUrl(text: String) {
         lifecycleScope.launch {
             viewModel.music.collect{musicUrl->
                 musicUrl?.let {
                     val path = musicUrl.maybePublicBucketWavAudioPath.toString()
                     Log.e("Music Url",path)
                     if(path.isNotEmpty()){
-                        val musicInfo = SongPlayingData(image = image, name = name, musicPath = path)
+                        val musicInfo = SongPlayingData(image = image, name = name, musicPath = path, text = text)
                         val action = SongGenerationFragmentDirections.actionSongGenerationFragmentToSongPlayingFragment(musicInfo)
                         findNavController().navigate(action)
                     }
