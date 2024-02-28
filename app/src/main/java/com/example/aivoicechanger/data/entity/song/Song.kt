@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
-@Entity("Song")
+@Entity("song")
 data class Song (
     @PrimaryKey(autoGenerate = true)
     private val id : Int,
