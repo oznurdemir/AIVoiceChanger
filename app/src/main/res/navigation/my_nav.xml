@@ -67,5 +67,8 @@
         <argument
             android:name="info"
             app:argType="com.example.aivoicechanger.data.entity.song_playing.SongPlayingData" />
+        <action
+            android:id="@+id/action_songPlayingFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
     </fragment>
 </navigation>

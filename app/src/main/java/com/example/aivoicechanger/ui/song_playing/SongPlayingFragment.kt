@@ -13,6 +13,7 @@ import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.aivoicechanger.R
 import com.example.aivoicechanger.data.entity.song.Song
@@ -62,6 +63,7 @@ class SongPlayingFragment : Fragment() {
                 val voice = Song(0,image, name, text)
                 viewModel.addVoice(voice)
                 Log.e("ADD", voice.toString())
+                findNavController().navigate(R.id.action_songPlayingFragment_to_homePageFragment)
             }
         }
 
