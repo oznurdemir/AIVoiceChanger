@@ -10,5 +10,6 @@ data class Song (
      val id : Int,
      val celebrityImage : Int,
      val celebrityName : Int,
-     val text : String
+     val text : String,
+    val url : String
 )
