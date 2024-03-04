@@ -17,4 +17,8 @@ interface VoiceDao {
 
     @Query("SELECT COUNT(*) FROM song")
     suspend fun getVoiceCount() : Int
+
+    @Query("SELECT * FROM song WHERE celebrityName = :name AND text = :text LIMIT 1")
+    suspend fun getVoiceByNameAndText(name: Int, text: String): Song?
+
 }
