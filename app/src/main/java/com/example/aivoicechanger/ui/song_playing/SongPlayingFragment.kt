@@ -60,7 +60,7 @@ class SongPlayingFragment : Fragment() {
             imageViewFoward = imageViewBefore
 
             buttonSave.setOnClickListener {
-                val voice = Song(0,image, name, text)
+                val voice = Song(0,image, name, text,audioUrl)
                 viewModel.addVoice(voice)
                 Log.e("ADD", voice.toString())
                 findNavController().navigate(R.id.action_songPlayingFragment_to_homePageFragment)
