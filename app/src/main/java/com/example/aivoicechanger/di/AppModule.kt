@@ -42,5 +42,7 @@ class AppModule {
             context,
             Database :: class.java,
             "Voice_Db"
-        ).build()
+        )
+            .fallbackToDestructiveMigration() // veritabanını silip yeniden oluşturduk
+            .build()
 }
