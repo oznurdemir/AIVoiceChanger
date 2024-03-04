@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_AIVoicesFragment"
             app:destination="@id/AIVoicesFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_songPlayingFragment"
+            app:destination="@id/songPlayingFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
