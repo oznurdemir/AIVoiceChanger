@@ -60,4 +60,8 @@ class DataSource (val apiService: ApiService, val voiceDatabase: Database){
     suspend fun getVoiceCount() : Int {
         return voiceDatabase.voiceDao.getVoiceCount()
     }
+
+    suspend fun deleteVoice(voice : Song) {
+        return voiceDatabase.voiceDao.deleteVoice(voice)
+    }
 }

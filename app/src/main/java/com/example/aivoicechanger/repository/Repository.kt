@@ -13,4 +13,5 @@ class Repository (private val dataSource: DataSource) {
     suspend fun addVoice(voice : Song) = dataSource.addVoice(voice)
     fun getVoice() = dataSource.getVoice()
     suspend fun getVoiceCount() = dataSource.getVoiceCount()
+    suspend fun deleteVoice(voice: Song) = dataSource.deleteVoice(voice)
 }
