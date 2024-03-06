@@ -2,6 +2,7 @@ package com.example.aivoicechanger.data.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -20,5 +21,8 @@ interface VoiceDao {
 
     @Query("SELECT * FROM song WHERE celebrityName = :name AND text = :text LIMIT 1")
     suspend fun getVoiceByNameAndText(name: Int, text: String): Song?
+
+    @Delete
+    suspend fun deleteVoice(voice : Song)
 
 }
