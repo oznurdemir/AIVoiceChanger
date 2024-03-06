@@ -1,5 +1,7 @@
 package com.example.aivoicechanger.data.datasource
 
+import android.util.Log
+import androidx.lifecycle.LiveData
 import com.example.aivoicechanger.R
 import com.example.aivoicechanger.data.database.Database
 import com.example.aivoicechanger.data.entity.generate_voice_ai.celebrity_info.CelebrityItem
@@ -40,7 +42,22 @@ class DataSource (val apiService: ApiService, val voiceDatabase: Database){
         emit(apiService.getMusicUrl(musicToken))
     }.flowOn(Dispatchers.IO)
 
-    suspend fun addVoice(voice : Song) {
-        voiceDatabase.voiceDao.addVoice(voice)
+    suspend fun addVoice(voice: Song) {
+        // Veritabanından aynı name ve text değerlerine sahip kayıtları sorgula
+        val existingVoice = voiceDatabase.voiceDao.getVoiceByNameAndText(voice.celebrityName, voice.text)
+        if (existingVoice == null) {
+            voiceDatabase.voiceDao.addVoice(voice)
+        } else {
+             Log.e("ADD", "Bu ses zaten kaydedilmiş.")
+        }
+    }
+
+
+    fun getVoice() : LiveData<List<Song>> {
+        return voiceDatabase.voiceDao.getVoice()
+    }
+
+    suspend fun getVoiceCount() : Int {
+        return voiceDatabase.voiceDao.getVoiceCount()
     }
 }

@@ -11,4 +11,6 @@ class Repository (private val dataSource: DataSource) {
     suspend fun celebrityList() : Flow<List<CelebrityItem>> = dataSource.celebrityList()
     suspend fun getMusicUrl(musicToken : String) : Flow<MusicResponse> = dataSource.getMusicUrl(musicToken)
     suspend fun addVoice(voice : Song) = dataSource.addVoice(voice)
+    fun getVoice() = dataSource.getVoice()
+    suspend fun getVoiceCount() = dataSource.getVoiceCount()
 }
