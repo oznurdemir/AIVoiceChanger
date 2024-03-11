@@ -56,7 +56,10 @@ class HomePageAdapter (var mContext: Context, private val viewModel: HomePageVie
         holder.binding.apply {
             celebrityImage.setImageResource(currentItem.celebrityImage)
             textViewGeneration.text = "00${currentItem.id} Generation"
-            textViewCelebrity.setText(currentItem.celebrityName)
+            val nameResourceId = currentItem.celebrityName
+            val nameString = mContext.getString(nameResourceId)
+            val formattedName = nameString.replace("\n", "").trim()
+            textViewCelebrity.text = formattedName
             textViewInput.text = currentItem.text
         }
         holder.binding.root.setOnClickListener {
