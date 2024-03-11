@@ -50,8 +50,10 @@ class SongPlayingFragment : Fragment() {
         mediaPlayer.prepare()
 
         binding.apply {
+            val formattedName = getString(name)?.replace("\n", "")?.trim()
+            Log.e("formattedName",formattedName!!)
             celebrity.setImageResource(image)
-            textViewCelebrityName.setText(name)
+            binding.textViewCelebrityName.text = formattedName
             this@SongPlayingFragment.seekBar = seekBar
             this@SongPlayingFragment.textViewTimeStart = textViewTimeStart
             this@SongPlayingFragment.textViewTimeEnd = textViewTimeEnd
